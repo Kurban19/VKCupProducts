@@ -5,10 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toolbar
 import androidx.fragment.app.viewModels
 import com.shkiper.vkcupproducts.R
 
 class GroupsFragment : Fragment() {
+
+    private lateinit var toolbar: Toolbar
 
 //    private val viewModel: UserProfileViewModel by viewModels(
 //        factoryProducer = { this }
@@ -26,8 +29,6 @@ class GroupsFragment : Fragment() {
             GroupsFragment()
     }
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +38,12 @@ class GroupsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initViews()
+
+    }
+
+    private fun initViews(){
 
     }
 }
