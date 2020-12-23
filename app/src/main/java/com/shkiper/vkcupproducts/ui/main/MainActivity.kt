@@ -1,5 +1,6 @@
 package com.shkiper.vkcupproducts.ui.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ open class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         showFragment(GroupsFragment())
+        setToolbarTitle("Магазины в Санкт-Петербурге")
     }
 
     private fun showFragment(fragment: Fragment){
@@ -23,6 +25,7 @@ open class MainActivity : AppCompatActivity() {
 
         fragmentTransaction.replace(R.id.nav_host_fragment, fragment, TAG)
         fragmentTransaction.addToBackStack(null)
+
         fragmentTransaction.commit()
     }
 
@@ -57,8 +60,10 @@ open class MainActivity : AppCompatActivity() {
         toolbar.navigationIcon = null
     }
 
+    @SuppressLint("ResourceAsColor")
     protected fun setToolbarTitle(title: String) {
-        toolbar.title = title
+        toolbar.setTitleTextColor(R.color.black)
+        supportActionBar?.title = title
     }
 
 

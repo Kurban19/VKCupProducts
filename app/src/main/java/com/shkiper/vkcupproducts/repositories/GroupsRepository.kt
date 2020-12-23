@@ -2,7 +2,7 @@ package com.shkiper.vkcupproducts.repositories
 
 import androidx.lifecycle.MutableLiveData
 import com.shkiper.vkcupproducts.models.Group
-
+import com.vk.api.sdk.*
 object GroupsRepository {
 
     private val groups = MutableLiveData<List<Group>>()
@@ -12,7 +12,7 @@ object GroupsRepository {
     }
 
     private fun fetchGroups(): List<Group>{
-        //TODO complete function to retrieve groups from vk
+//        val request =
 
         return emptyList()
     }

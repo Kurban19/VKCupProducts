@@ -6,9 +6,9 @@ import com.shkiper.vkcupproducts.repositories.GroupsRepository
 class GroupsViewModel: ViewModel() {
 
     private val groupsRepository = GroupsRepository
+
+
     private val groups = groupsRepository.loadGroups()
-
-
 
 
 }

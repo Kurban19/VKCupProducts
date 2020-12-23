@@ -30,9 +30,6 @@ class LoginActivity : AppCompatActivity() {
             progressBar.visibility = ProgressBar.VISIBLE
         }
 
-
-
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
