@@ -3,9 +3,9 @@ package com.shkiper.vkcupproducts.models
 import org.json.JSONObject
 
 data class Group(
-    private val id: String,
-    private val name: String,
-    private val imagePath:String,
+    val id: String,
+    val title: String,
+    val imagePath:String,
     private val city: String,
     private val products: List<Product> = emptyList()
 ){
