@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.shkiper.vkcupproducts.R
 import com.shkiper.vkcupproducts.ui.groups.GroupsFragment
+import com.vk.api.sdk.utils.VKUtils.getCertificateFingerprint
 import kotlinx.android.synthetic.main.activity_main.*
 
 

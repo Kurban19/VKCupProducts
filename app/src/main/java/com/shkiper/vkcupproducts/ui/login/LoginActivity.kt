@@ -3,6 +3,7 @@ package com.shkiper.vkcupproducts.ui.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -13,6 +14,7 @@ import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
 import com.vk.api.sdk.auth.VKScope
+import com.vk.api.sdk.utils.VKUtils
 
 
 class LoginActivity : AppCompatActivity() {
@@ -32,6 +34,11 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+//        val fingerprints = VKUtils.getCertificateFingerprint(this, this.packageName)
+
+//        Log.d("Tag", fingerprints!![0].toString())
+//        print(fingerprints[0].toString())
 
         if (VK.isLoggedIn()) {
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
@@ -60,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onLoginFailed(errorCode: Int) {
-                Toast.makeText(this@LoginActivity, "Что-то пошло не так", Toast.LENGTH_LONG)
+                Toast.makeText(this@LoginActivity, "Что-то пошло не так", Toast.LENGTH_LONG).show()
                 progressBar.visibility = ProgressBar.GONE
             }
         }

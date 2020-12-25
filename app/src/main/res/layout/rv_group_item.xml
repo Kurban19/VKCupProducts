@@ -35,6 +35,7 @@
             android:layout_marginTop="12dp"/>
 
     <TextView
+        android:id="@+id/tv_is_closed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Открытая группа"

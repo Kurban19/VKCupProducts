@@ -32,6 +32,7 @@ class GroupsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         initViewModel()
         initViews()
 
@@ -50,13 +51,11 @@ class GroupsFragment : Fragment() {
             addItemDecoration(divider)
         }
 
-
     }
 
     private fun initViewModel(){
         viewModel = ViewModelProviders.of(this).get(GroupsViewModel::class.java)
         viewModel.getGroups().observe(viewLifecycleOwner, Observer { groupAdapter.updateData(it) })
     }
-
 
 }

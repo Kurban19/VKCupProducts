@@ -1,5 +1,6 @@
 package com.shkiper.vkcupproducts.repositories
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.shkiper.vkcupproducts.models.Group
 import com.shkiper.vkcupproducts.network.VKGroupsCommand
@@ -9,14 +10,13 @@ object GroupsRepository {
     private val groups = MutableLiveData<List<Group>>()
 
     init {
-        groups.value = fetchGroups()
+        fetchGroups()
     }
 
-    private fun fetchGroups(): List<Group>{
-        var groups = emptyList<Group>()
+    private fun fetchGroups(){
         VK.execute(VKGroupsCommand(), object: VKApiCallback<List<Group>>{
             override fun success(result: List<Group>) {
-                groups = result
+                groups.value = result
             }
 
             override fun fail(error: Exception) {
@@ -24,7 +24,6 @@ object GroupsRepository {
             }
 
         })
-        return groups
     }
 
     fun loadGroups() = groups

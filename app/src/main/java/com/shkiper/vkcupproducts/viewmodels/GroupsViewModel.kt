@@ -1,5 +1,6 @@
 package com.shkiper.vkcupproducts.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.shkiper.vkcupproducts.models.Group
@@ -11,7 +12,6 @@ class GroupsViewModel: ViewModel() {
 
 
     private val groups = groupsRepository.loadGroups()
-
 
     fun getGroups(): MutableLiveData<List<Group>> {
         return groups
