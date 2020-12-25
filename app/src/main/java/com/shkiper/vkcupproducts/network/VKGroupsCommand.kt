@@ -16,8 +16,8 @@ class VKGroupsCommand(private val ids: IntArray = intArrayOf()) : ApiCommand<Lis
         if (ids.isEmpty()) {
             // if no uids, send user's data
             val call = VKMethodCall.Builder()
-                .method("group.get")
-                .args("fields", "photo_200")
+                .method("groups.get")
+                .args("filter", "hasAddress")
                 .version(manager.config.version)
                 .build()
             return manager.execute(call, ResponseApiParser())
@@ -28,7 +28,7 @@ class VKGroupsCommand(private val ids: IntArray = intArrayOf()) : ApiCommand<Lis
                 val call = VKMethodCall.Builder()
                     .method("groups.get")
                     .args("group_ids", chunk.joinToString(","))
-                    .args("fields", "photo_200")
+                    .args("filter", "hasAddress")
                     .version(manager.config.version)
                     .build()
                 result.addAll(manager.execute(call, ResponseApiParser()))
