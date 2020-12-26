@@ -1,6 +1,5 @@
 package com.shkiper.vkcupproducts.repositories
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.shkiper.vkcupproducts.models.Group
 import com.shkiper.vkcupproducts.network.VKGroupsCommand

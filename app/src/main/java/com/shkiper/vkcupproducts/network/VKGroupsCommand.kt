@@ -14,11 +14,13 @@ import org.json.JSONObject
 class VKGroupsCommand() : ApiCommand<List<Group>>() {
 
     override fun onExecute(manager: VKApiManager): List<Group> {
-            // if no uids, send user's data
+
             val call = VKMethodCall.Builder()
                 .method("groups.get")
                 .args("extended", 1)
                 .args("fields", "photo_200")
+                .args("filter", "hasAddress")
+//                .args("filter", "market")
                 .version(manager.config.version)
                 .build()
             return manager.execute(call, ResponseApiParser())
@@ -29,6 +31,7 @@ class VKGroupsCommand() : ApiCommand<List<Group>>() {
             try {
                 val ja = JSONObject(response).getJSONObject("response").getJSONArray("items")
                 val r = ArrayList<Group>(ja.length())
+                Log.d("Tag", response)
                 for (i in 0 until ja.length()) {
                     val group = Group.parse(ja.getJSONObject(i))
                     r.add(group)
