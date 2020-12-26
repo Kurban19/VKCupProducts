@@ -35,10 +35,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-//        val fingerprints = VKUtils.getCertificateFingerprint(this, this.packageName)
+        val fingerprints = VKUtils.getCertificateFingerprint(this, this.packageName)
 
-//        Log.d("Tag", fingerprints!![0].toString())
-//        print(fingerprints[0].toString())
+        Log.d("Tag", fingerprints!![0].toString())
+        print(fingerprints[0].toString())
 
         if (VK.isLoggedIn()) {
             val intent = Intent(this@LoginActivity, MainActivity::class.java)

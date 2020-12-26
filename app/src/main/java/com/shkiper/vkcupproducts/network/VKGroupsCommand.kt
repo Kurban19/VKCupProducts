@@ -28,7 +28,6 @@ class VKGroupsCommand() : ApiCommand<List<Group>>() {
         override fun parse(response: String): List<Group> {
             try {
                 val ja = JSONObject(response).getJSONObject("response").getJSONArray("items")
-//                Log.d("Tag", response)
                 val r = ArrayList<Group>(ja.length())
                 for (i in 0 until ja.length()) {
                     val group = Group.parse(ja.getJSONObject(i))

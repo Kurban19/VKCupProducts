@@ -54,7 +54,7 @@ class GroupAdapter(val listener: (Group) -> Unit): RecyclerView.Adapter<GroupAda
                 .into(itemView.iv_logo)
 
             itemView.tv_title_of_group.text = group.title
-            itemView.tv_is_closed.text == if(group.isClosed) "Закрытая группа" else "Открытая группа"
+            itemView.tv_is_closed.text = if(group.isClosed) "Закрытая группа" else "Открытая группа"
 
             itemView.setOnClickListener { listener.invoke(group) }
         }
