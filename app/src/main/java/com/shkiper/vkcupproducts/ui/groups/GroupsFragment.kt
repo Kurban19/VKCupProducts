@@ -43,12 +43,10 @@ class GroupsFragment : Fragment() {
             Toast.makeText(this.context, it.title, Toast.LENGTH_LONG).show()
         }
 
-        val divider = DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
 
         with(rv_list_of_groups){
             adapter = groupAdapter
             layoutManager = LinearLayoutManager(this@GroupsFragment.context)
-            addItemDecoration(divider)
         }
 
     }

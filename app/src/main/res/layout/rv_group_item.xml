@@ -40,7 +40,6 @@
         android:layout_height="wrap_content"
         tools:text="Открытая группа"
         android:textSize="13sp"
-        android:layout_centerVertical="true"
         android:layout_toEndOf="@id/cv_logo"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"

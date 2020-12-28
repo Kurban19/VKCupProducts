@@ -11,18 +11,18 @@ import com.vk.api.sdk.internal.ApiCommand
 import org.json.JSONException
 import org.json.JSONObject
 
-class VKGroupsCommand() : ApiCommand<List<Group>>() {
+class VKGroupsCommand : ApiCommand<List<Group>>() {
 
     override fun onExecute(manager: VKApiManager): List<Group> {
 
             val call = VKMethodCall.Builder()
-                .method("groups.get")
-                .args("extended", 1)
-                .args("fields", "photo_200")
-                .args("filter", "hasAddress")
-//                .args("filter", "market")
-                .version(manager.config.version)
-                .build()
+                    .method("groups.get")
+                    .args("extended", 1)
+                    .args("fields", "photo_200")
+                    .args("fields", "city")
+                    .args("fields", "market")
+                    .version(manager.config.version)
+                    .build()
             return manager.execute(call, ResponseApiParser())
     }
 
