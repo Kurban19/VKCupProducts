@@ -1,6 +1,5 @@
 package com.shkiper.vkcupproducts.models
 
-import android.util.Log
 import org.json.JSONObject
 
 data class Group(
@@ -9,22 +8,25 @@ data class Group(
     val isClosed: Boolean,
     val imagePath:String = "",
     val marketEnabled: Boolean,
-    private val city: String,
-    private val products: List<Product> = emptyList()
+    val mainAlbumId: Int,
+    private val city: String = ""
 ){
 
     companion object{
         fun parse(r: JSONObject): Group{
             var marketEnabled = false
-            var city = ""
+            var mainAlbumId = 0
             if (r.has("market")) {
-                marketEnabled = r.getJSONObject("market").getInt("enabled") == 1
+                r.getJSONObject("market").apply {
+                    marketEnabled = this.getInt("enabled") == 1
+                    if(this.has("main_album_id")){
+                        mainAlbumId = this.getInt("main_album_id")
+                    }
+                }
+
             }
-            if(r.has("city")){
-                city = r.getJSONObject("city").getString("title")
-                Log.d("Tag", city)
-            }
-             return Group(r.getString("id"), r.getString("name"), r.getInt("is_closed") == 1, r.getString("photo_200"), marketEnabled, city)
+
+             return Group(r.getString("id"), r.getString("name"), r.getInt("is_closed") == 1, r.getString("photo_200"), marketEnabled, mainAlbumId)
         }
     }
 }

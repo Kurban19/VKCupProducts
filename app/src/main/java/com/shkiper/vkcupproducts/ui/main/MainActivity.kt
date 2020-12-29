@@ -24,7 +24,7 @@ open class MainActivity : AppCompatActivity() {
         val TAG = fragment.tag
         val fragmentTransaction = supportFragmentManager.beginTransaction()
 
-        fragmentTransaction.replace(R.id.nav_host_fragment, fragment, TAG)
+        fragmentTransaction.replace(R.id.mainLayout, fragment, TAG)
         fragmentTransaction.addToBackStack(null)
 
         fragmentTransaction.commit()

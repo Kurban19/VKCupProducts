@@ -11,18 +11,19 @@ import com.shkiper.vkcupproducts.models.Group
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.rv_group_item.view.*
 
-class GroupAdapter(val listener: (Group) -> Unit): RecyclerView.Adapter<GroupAdapter.UserViewHolder>() {
+class GroupAdapter(private val listener: (Group) -> Unit): RecyclerView.Adapter<GroupAdapter.GroupViewHolder>() {
+
     private var items: List<Group> = listOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupAdapter.UserViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupAdapter.GroupViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val convertView = inflater.inflate(R.layout.rv_group_item, parent, false)
-        return UserViewHolder(convertView)
+        return GroupViewHolder(convertView)
     }
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: UserViewHolder, position: Int) = holder.bind(items[position], listener)
+    override fun onBindViewHolder(holder: GroupViewHolder, position: Int) = holder.bind(items[position], listener)
 
     fun updateData(data: List<Group>) {
 
@@ -42,8 +43,9 @@ class GroupAdapter(val listener: (Group) -> Unit): RecyclerView.Adapter<GroupAda
         diffResult.dispatchUpdatesTo(this)
     }
 
-    inner class UserViewHolder(convertView: View) : RecyclerView.ViewHolder(convertView),
+    inner class GroupViewHolder(convertView: View) : RecyclerView.ViewHolder(convertView),
         LayoutContainer {
+
         override val containerView: View?
             get() = itemView
 
@@ -52,6 +54,7 @@ class GroupAdapter(val listener: (Group) -> Unit): RecyclerView.Adapter<GroupAda
             Glide.with(itemView)
                 .load(group.imagePath)
                 .into(itemView.iv_logo)
+
 
             itemView.tv_title_of_group.text = group.title
             itemView.tv_is_closed.text = if(group.isClosed) "Закрытая группа" else "Открытая группа"
