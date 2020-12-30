@@ -17,7 +17,6 @@ object GroupsRepository {
             override fun success(result: List<Group>) {
                 groups.value = result
             }
-
             override fun fail(error: Exception) {
                 throw Exception(error.message)
             }

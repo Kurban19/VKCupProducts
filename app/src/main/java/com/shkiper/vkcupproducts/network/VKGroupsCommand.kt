@@ -18,7 +18,6 @@ class VKGroupsCommand : ApiCommand<List<Group>>() {
             val call = VKMethodCall.Builder()
                     .method("groups.get")
                     .args("extended", 1)
-                    .args("is_member",0)
                     .args("fields", "photo_200")
                     .args("fields", "market")
                     .version(manager.config.version)
