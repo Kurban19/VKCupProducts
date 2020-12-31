@@ -12,9 +12,7 @@ class GroupsViewModel: ViewModel() {
     private val groupsRepository = GroupsRepository
 
 
-    private val groups = Transformations.map(groupsRepository.loadGroups()) { groups ->
-        return@map groups.filter { it.marketEnabled }
-    }
+    private val groups = groupsRepository.loadGroups()
 
     fun getGroups(): LiveData<List<Group>> {
         Log.d("Tag", groups.value.toString())

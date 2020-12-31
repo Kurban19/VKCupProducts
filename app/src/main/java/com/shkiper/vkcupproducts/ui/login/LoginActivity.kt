@@ -51,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progress_bar)
 
         btnLogin.setOnClickListener {
-            VK.login(this, arrayListOf(VKScope.GROUPS))
+            VK.login(this, arrayListOf(VKScope.MARKET, VKScope.GROUPS))
             progressBar.visibility = ProgressBar.VISIBLE
         }
 

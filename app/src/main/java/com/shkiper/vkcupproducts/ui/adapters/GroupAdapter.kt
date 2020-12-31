@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shkiper.vkcupproducts.R
+import com.shkiper.vkcupproducts.extensions.truncate
 import com.shkiper.vkcupproducts.models.Group
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.rv_group_item.view.*
@@ -56,7 +57,7 @@ class GroupAdapter(private val listener: (Group) -> Unit): RecyclerView.Adapter<
                 .into(itemView.iv_logo)
 
 
-            itemView.tv_title_of_group.text = group.title
+            itemView.tv_title_of_group.text = group.title.truncate()
             itemView.tv_is_closed.text = if(group.isClosed) "Закрытая группа" else "Открытая группа"
 
             itemView.setOnClickListener { listener.invoke(group) }
