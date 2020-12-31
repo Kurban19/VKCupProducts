@@ -1,15 +1,7 @@
 package com.shkiper.vkcupproducts.network
 
-import android.util.Log
 import com.shkiper.vkcupproducts.models.Group
-import com.vk.api.sdk.VK
-import com.vk.api.sdk.VKApiManager
-import com.vk.api.sdk.VKApiResponseParser
-import com.vk.api.sdk.VKMethodCall
-import com.vk.api.sdk.exceptions.VKApiIllegalResponseException
-import com.vk.api.sdk.internal.ApiCommand
 import com.vk.api.sdk.requests.VKRequest
-import org.json.JSONException
 import org.json.JSONObject
 
 class VKGroupsRequest: VKRequest<List<Group>> {

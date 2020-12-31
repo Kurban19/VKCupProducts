@@ -15,7 +15,7 @@ object GroupsRepository {
     }
 
     private fun fetchGroups(){
-        VK.execute(VKGroupsRequest(2), object: VKApiCallback<List<Group>>{
+        VK.execute(VKGroupsRequest(1), object: VKApiCallback<List<Group>>{
             override fun success(result: List<Group>) {
                 groups.value = result
             }
