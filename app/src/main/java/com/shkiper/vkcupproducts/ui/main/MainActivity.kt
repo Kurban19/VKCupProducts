@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.shkiper.vkcupproducts.R
 import com.shkiper.vkcupproducts.ui.groups.GroupsFragment
-import com.vk.api.sdk.utils.VKUtils.getCertificateFingerprint
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -16,15 +15,15 @@ open class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        showFragment(GroupsFragment())
+        showFragment(GroupsFragment(), "GroupsFragmentTAG")
         setToolbarTitle("Магазины в Санкт-Петербурге")
     }
 
-    private fun showFragment(fragment: Fragment){
-        val TAG = fragment.tag
+    private fun showFragment(fragment: Fragment, tag: String){
         val fragmentTransaction = supportFragmentManager.beginTransaction()
 
-        fragmentTransaction.replace(R.id.mainLayout, fragment, TAG)
+
+        fragmentTransaction.replace(R.id.mainLayout, fragment, tag)
         fragmentTransaction.addToBackStack(null)
 
         fragmentTransaction.commit()

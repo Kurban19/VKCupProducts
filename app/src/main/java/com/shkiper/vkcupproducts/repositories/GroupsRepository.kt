@@ -10,12 +10,8 @@ object GroupsRepository {
 
     private val groups = MutableLiveData<List<Group>>()
 
-    init {
-        fetchGroups()
-    }
-
-    private fun fetchGroups(){
-        VK.execute(VKGroupsRequest(1), object: VKApiCallback<List<Group>>{
+    fun fetchGroups(cityId: Int){
+        VK.execute(VKGroupsRequest(cityId), object: VKApiCallback<List<Group>>{
             override fun success(result: List<Group>) {
                 groups.value = result
             }

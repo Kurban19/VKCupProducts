@@ -11,11 +11,9 @@ class GroupsViewModel: ViewModel() {
 
     private val groupsRepository = GroupsRepository
 
-
     private val groups = groupsRepository.loadGroups()
 
     fun getGroups(): LiveData<List<Group>> {
-        Log.d("Tag", groups.value.toString())
         return groups
     }
 
