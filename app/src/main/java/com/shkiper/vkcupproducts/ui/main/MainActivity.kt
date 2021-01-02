@@ -17,6 +17,7 @@ import com.shkiper.vkcupproducts.R
 import com.shkiper.vkcupproducts.models.City
 import com.shkiper.vkcupproducts.network.VKCitiesRequest
 import com.shkiper.vkcupproducts.ui.adapters.CitiesAdapter
+import com.shkiper.vkcupproducts.ui.dialogs.CitiesSheetDialog
 import com.shkiper.vkcupproducts.ui.groups.GroupsFragment
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.VKApiCallback
@@ -25,43 +26,27 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 open class MainActivity : AppCompatActivity() {
 
-    private lateinit var closeImageButton: ImageView
-    private lateinit var citiesAdapter: CitiesAdapter
-    private lateinit var citiesRecyclerView: RecyclerView
-    private lateinit var bottomSheetDialog: BottomSheetDialog
+    private lateinit var bottomSheetDialog: CitiesSheetDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        toolbar.setOnClickListener {  }
         showFragment(GroupsFragment(), "GroupsFragmentTAG")
         setToolbarTitle("Магазины")
-
-
+        initBottomSheetDialog()
+        initViews()
     }
 
-    private fun initBottomSheetDialog(view : View){
-        bottomSheetDialog = BottomSheetDialog(this, R.style.BottomSheetDialogTheme)
-        val bottomSheetView = LayoutInflater.from(this).inflate(R.layout.layout_bottom_sheet,
-                view.findViewById<LinearLayout>(R.id.bottom_sheet_container))
-
-
-        closeImageButton = bottomSheetView.findViewById<ImageView>(R.id.closeImageView).apply {
-            setOnClickListener{
-                bottomSheetDialog.dismiss()
-            }
-        }
-
-        loadCities(bottomSheetView)
-        bottomSheetDialog.setContentView(bottomSheetView)
+    private fun initBottomSheetDialog(){
+        loadCities()
     }
 
 
-    private fun loadCities(view: View){
+    private fun loadCities(){
         VK.execute(VKCitiesRequest(), object: VKApiCallback<List<City>> {
             override fun success(result: List<City>) {
-                initCitiesRecyclerView(view, result as ArrayList<City>)
+                bottomSheetDialog = CitiesSheetDialog(result)
             }
             override fun fail(error: Exception) {
                 throw KotlinNullPointerException()
@@ -69,15 +54,12 @@ open class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun initCitiesRecyclerView(view: View, vkCities : ArrayList<City>) {
-        citiesRecyclerView = view.findViewById(R.id.citiesRecyclerView)
-        citiesRecyclerView.layoutManager = LinearLayoutManager(activity)
-        citiesAdapter = CitiesAdapter(activity as MainActivity, vkCities)
-        citiesRecyclerView.adapter = citiesAdapter
 
-        citiesRecyclerView.setHasFixedSize(true)
-        citiesRecyclerView.setItemViewCacheSize(20)
-        citiesRecyclerView.isDrawingCacheEnabled = true
+    private fun initViews(){
+        toolbar.setOnClickListener {
+            bottomSheetDialog.show(supportFragmentManager, "OpenSheetDialog")
+        }
+
     }
 
 

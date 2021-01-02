@@ -40,11 +40,7 @@ class CitiesAdapter(private val activity: MainActivity, private var cities : Mut
            cityTitle!!.text = city.title
 
             itemView.setOnClickListener {
-                activity.supportFragmentManager.apply {
-                    val groupsFragment = findFragmentByTag("GroupsFragmentTAG") as GroupsFragment
-                    GroupsRepository.fetchGroups(city.id)
-                    groupsFragment.hideBottomSheetDialog()
-                }
+                GroupsRepository.fetchGroups(city.id)
             }
         }
     }
