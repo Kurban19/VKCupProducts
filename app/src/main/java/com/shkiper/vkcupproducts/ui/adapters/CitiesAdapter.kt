@@ -4,6 +4,7 @@ package com.shkiper.vkcupproducts.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.shkiper.vkcupproducts.R
@@ -15,7 +16,7 @@ import com.shkiper.vkcupproducts.ui.main.MainActivity
 
 class CitiesAdapter(private val activity: MainActivity, private var cities : MutableList<City>, private var checked : Array<Int?> = arrayOfNulls(cities.size)) : RecyclerView.Adapter<CitiesAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent?.context).inflate(R.layout.rv_city_item, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.rv_city_item, parent, false)
         return ViewHolder(itemView)
     }
 
@@ -29,11 +30,15 @@ class CitiesAdapter(private val activity: MainActivity, private var cities : Mut
     inner class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!){
 
         var cityTitle: TextView? = null
+        var checkedIV: ImageView? = null
         init {
             cityTitle = itemView!!.findViewById(R.id.cityTextView)
+            checkedIV = itemView!!.findViewById(R.id.checkedImageView)
+//            checkedIV!!.visibility = View.VISIBLE
         }
         fun bind(city: City, position: Int){
            cityTitle!!.text = city.title
+
             itemView.setOnClickListener {
                 activity.supportFragmentManager.apply {
                     val groupsFragment = findFragmentByTag("GroupsFragmentTAG") as GroupsFragment

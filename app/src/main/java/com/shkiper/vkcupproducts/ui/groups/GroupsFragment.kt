@@ -17,6 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.shkiper.vkcupproducts.R
 import com.shkiper.vkcupproducts.models.City
 import com.shkiper.vkcupproducts.network.VKCitiesRequest
+import com.shkiper.vkcupproducts.repositories.GroupsRepository
 import com.shkiper.vkcupproducts.ui.adapters.CitiesAdapter
 import com.shkiper.vkcupproducts.ui.adapters.GroupAdapter
 import com.shkiper.vkcupproducts.ui.main.MainActivity
@@ -43,7 +44,7 @@ class GroupsFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_groups, container, false)
 
-        initBottomSheetDialog(view)
+//        initBottomSheetDialog(view)
 
 
         return view
@@ -55,7 +56,9 @@ class GroupsFragment : Fragment() {
         initViewModel()
         initViews()
 
-        bottomSheetDialog.show()
+        GroupsRepository.fetchGroups(1)
+
+//        bottomSheetDialog.show()
     }
 
 
