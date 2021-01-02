@@ -18,7 +18,6 @@ object GroupsRepository {
             override fun fail(error: Exception) {
                 throw Exception(error.message)
             }
-
         })
     }
 

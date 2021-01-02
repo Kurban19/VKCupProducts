@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.shkiper.vkcupproducts.R
@@ -31,8 +30,6 @@ class CitiesSheetDialog(private val cities: List<City>) : BottomSheetDialogFragm
         return inflater.inflate(R.layout.layout_bottom_sheet, container, false)
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
@@ -43,7 +40,6 @@ class CitiesSheetDialog(private val cities: List<City>) : BottomSheetDialogFragm
         closeImageView.setOnClickListener {
             dismiss()
         }
-
         citiesRecyclerView.layoutManager = LinearLayoutManager(activity)
         citiesAdapter = CitiesAdapter(activity as MainActivity, cities as MutableList<City>)
         citiesRecyclerView.adapter = citiesAdapter
@@ -52,8 +48,5 @@ class CitiesSheetDialog(private val cities: List<City>) : BottomSheetDialogFragm
         citiesRecyclerView.setItemViewCacheSize(20)
         citiesRecyclerView.isDrawingCacheEnabled = true
     }
-
-
-
 
 }

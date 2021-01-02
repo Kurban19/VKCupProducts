@@ -4,7 +4,8 @@ import org.json.JSONObject
 
 data class City(
     val id: Int,
-    val title: String
+    val title: String,
+    var isPicked: Boolean = false
 ) {
 
     companion object{

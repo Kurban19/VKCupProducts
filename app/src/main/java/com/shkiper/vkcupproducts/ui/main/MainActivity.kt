@@ -23,7 +23,6 @@ import com.vk.api.sdk.VK
 import com.vk.api.sdk.VKApiCallback
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 open class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomSheetDialog: CitiesSheetDialog
@@ -66,7 +65,6 @@ open class MainActivity : AppCompatActivity() {
     private fun showFragment(fragment: Fragment, tag: String){
         val fragmentTransaction = supportFragmentManager.beginTransaction()
 
-
         fragmentTransaction.replace(R.id.mainLayout, fragment, tag)
         fragmentTransaction.addToBackStack(null)
 
@@ -100,7 +98,11 @@ open class MainActivity : AppCompatActivity() {
     }
 
 
-    protected fun disableNavigationIcon() {
+    fun hideBottomSheetDialog(){
+        bottomSheetDialog.dismiss()
+    }
+
+    fun disableNavigationIcon() {
         toolbar.navigationIcon = null
     }
 
