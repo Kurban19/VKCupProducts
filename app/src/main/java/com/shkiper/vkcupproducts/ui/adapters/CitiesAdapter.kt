@@ -23,7 +23,7 @@ class CitiesAdapter(private val activity: MainActivity, private var cities : Mut
     override fun getItemCount(): Int = cities.size
 
     override fun onBindViewHolder(holder: CitiesAdapter.ViewHolder, position: Int) {
-        val vkCity = cities.get(position)
+        val vkCity = cities[position]
         holder.bind(vkCity, position)
     }
 
@@ -41,6 +41,7 @@ class CitiesAdapter(private val activity: MainActivity, private var cities : Mut
 
             itemView.setOnClickListener {
                 GroupsRepository.fetchGroups(city.id)
+                activity.hideBottomSheetDialog()
             }
         }
     }

@@ -107,7 +107,7 @@ open class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("ResourceAsColor")
-    protected fun setToolbarTitle(title: String) {
+    fun setToolbarTitle(title: String) {
         tv_toolbar_title.text = title
     }
 
