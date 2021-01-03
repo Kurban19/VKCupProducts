@@ -64,7 +64,6 @@ class GroupsFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as MainActivity?)!!.disableNavigationIcon()
-        (activity as MainActivity?)!!.setToolbarTitle("Магазины")
         (activity as MainActivity?)!!.enableDropDownIcon()
     }
 

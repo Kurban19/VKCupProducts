@@ -17,7 +17,6 @@ class CitiesSheetDialog(private val cities: List<City>) : BottomSheetDialogFragm
 
     private lateinit var citiesAdapter: CitiesAdapter
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.BottomSheetDialogTheme)

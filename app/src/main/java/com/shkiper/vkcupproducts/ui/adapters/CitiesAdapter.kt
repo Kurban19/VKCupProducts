@@ -42,6 +42,7 @@ class CitiesAdapter(private val activity: MainActivity, private var cities : Mut
             itemView.setOnClickListener {
                 GroupsRepository.fetchGroups(city.id)
                 activity.hideBottomSheetDialog()
+                activity.setToolbarTitle("Магазины в ${city.title}")
             }
         }
     }
