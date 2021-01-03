@@ -18,7 +18,6 @@
             android:id="@+id/iv_logo"
             android:layout_width="@dimen/rv_logo_size"
             android:layout_height="@dimen/rv_logo_size"
-            tools:src="@drawable/nike_logo"
             android:scaleType="centerCrop"/>
 
     </androidx.cardview.widget.CardView>

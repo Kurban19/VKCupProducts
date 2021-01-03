@@ -55,7 +55,7 @@ open class MainActivity : AppCompatActivity() {
 
 
     private fun initViews(){
-        toolbar.setOnClickListener {
+        ic_dropdown.setOnClickListener {
             bottomSheetDialog.show(supportFragmentManager, "OpenSheetDialog")
         }
 
@@ -108,8 +108,15 @@ open class MainActivity : AppCompatActivity() {
 
     @SuppressLint("ResourceAsColor")
     protected fun setToolbarTitle(title: String) {
-        toolbar.setTitleTextColor(R.color.black)
-        supportActionBar?.title = title
+        tv_toolbar_title.text = title
+    }
+
+    fun disableDropDownIcon(){
+        ic_dropdown.visibility = View.GONE
+    }
+
+    fun enableDropDownIcon(){
+        ic_dropdown.visibility = View.VISIBLE
     }
 
 
