@@ -24,7 +24,7 @@ class CitiesAdapter(private val activity: MainActivity, private var cities : Mut
 
     override fun onBindViewHolder(holder: CitiesAdapter.ViewHolder, position: Int) {
         val vkCity = cities[position]
-        holder.bind(vkCity, position)
+        holder.bind(vkCity)
     }
 
     inner class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!){
@@ -36,7 +36,7 @@ class CitiesAdapter(private val activity: MainActivity, private var cities : Mut
             checkedIV = itemView.findViewById(R.id.checkedImageView)
 //            checkedIV!!.visibility = View.VISIBLE
         }
-        fun bind(city: City, position: Int){
+        fun bind(city: City){
            cityTitle!!.text = city.title
 
             itemView.setOnClickListener {

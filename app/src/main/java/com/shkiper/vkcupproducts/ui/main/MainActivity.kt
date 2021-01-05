@@ -56,7 +56,7 @@ open class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun showFragment(fragment: Fragment){
+     fun showFragment(fragment: Fragment){
         val fragmentTransaction = supportFragmentManager.beginTransaction()
 
         val tag = fragment.tag
@@ -86,7 +86,7 @@ open class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    protected fun enableNavigationIcon() {
+    private fun enableNavigationIcon() {
         toolbar.setNavigationIcon(R.drawable.ic_back_outline_28)
         toolbar.setNavigationOnClickListener{
                 backStackFragment()

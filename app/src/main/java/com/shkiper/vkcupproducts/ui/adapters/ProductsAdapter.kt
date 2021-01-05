@@ -10,7 +10,7 @@ import com.shkiper.vkcupproducts.models.Product
 import kotlinx.android.synthetic.main.rv_group_item.view.*
 
 
-class ProductsAdapter(private val products: ArrayList<Product>) : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
+class ProductsAdapter(private val products: List<Product>) : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val view: View = LayoutInflater.from(viewGroup.context).inflate(R.layout.rv_product_item, viewGroup, false)
