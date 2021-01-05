@@ -3,20 +3,12 @@ package com.shkiper.vkcupproducts.ui.main
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.shkiper.vkcupproducts.R
 import com.shkiper.vkcupproducts.models.City
 import com.shkiper.vkcupproducts.network.VKCitiesRequest
-import com.shkiper.vkcupproducts.ui.adapters.CitiesAdapter
 import com.shkiper.vkcupproducts.ui.dialogs.CitiesSheetDialog
 import com.shkiper.vkcupproducts.ui.groups.GroupsFragment
 import com.vk.api.sdk.VK
@@ -35,6 +27,7 @@ open class MainActivity : AppCompatActivity() {
         showFragment(GroupsFragment())
         setToolbarTitle("Магазины в Moscow")
         initBottomSheetDialog()
+        enableNavigationIcon()
         initViews()
     }
 
