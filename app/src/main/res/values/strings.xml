@@ -7,4 +7,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="city">Город</string>
     <string name="markets">Магазины</string>
+    <string name="no_access_to_group">Нет доступа к этой группе</string>
 </resources>

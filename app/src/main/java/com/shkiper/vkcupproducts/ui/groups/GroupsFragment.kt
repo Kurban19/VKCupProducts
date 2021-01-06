@@ -36,9 +36,6 @@ class GroupsFragment : Fragment() {
 
         initViewModel()
         initViews()
-
-        GroupsRepository.fetchGroups(1)
-
     }
 
 
@@ -46,11 +43,14 @@ class GroupsFragment : Fragment() {
     private fun initViews(){
         groupAdapter = GroupAdapter{
             val bundle = Bundle()
-            bundle.putString(GroupFragment.GROUP_ID, it.id)
+            bundle.apply {
+                putString(GroupFragment.GROUP_ID, it.id)
+                putString(GroupFragment.GROUP_TITLE, it.title)
+            }
+
             val groupFragment = GroupFragment()
             groupFragment.arguments = bundle
             (activity as MainActivity?)!!.showFragment(groupFragment)
-
         }
 
 
@@ -70,6 +70,7 @@ class GroupsFragment : Fragment() {
         super.onResume()
         (activity as MainActivity?)!!.disableNavigationIcon()
         (activity as MainActivity?)!!.enableDropDownIcon()
+        (activity as MainActivity?)!!.setToolbarTitle("Магазины")
     }
 
 }

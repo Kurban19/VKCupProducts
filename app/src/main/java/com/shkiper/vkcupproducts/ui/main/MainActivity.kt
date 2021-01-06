@@ -24,9 +24,9 @@ open class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        showFragment(GroupsFragment())
-        setToolbarTitle("Магазины в Moscow")
         initBottomSheetDialog()
+//        showBottomSheetDialog()
+        showFragment(GroupsFragment())
         enableNavigationIcon()
         initViews()
     }
@@ -86,11 +86,15 @@ open class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    private fun enableNavigationIcon() {
+    fun enableNavigationIcon() {
         toolbar.setNavigationIcon(R.drawable.ic_back_outline_28)
         toolbar.setNavigationOnClickListener{
                 backStackFragment()
         }
+    }
+
+    fun showBottomSheetDialog(){
+        bottomSheetDialog.show(supportFragmentManager, "OpenSheetDialog")
     }
 
 

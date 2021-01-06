@@ -3,6 +3,8 @@ package com.shkiper.vkcupproducts.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shkiper.vkcupproducts.R
@@ -28,13 +30,21 @@ class ProductsAdapter(private val products: List<Product>) : RecyclerView.Adapte
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-
+        var productTitle: TextView? = null
+        var productImage: ImageView? = null
+        var productPrice: TextView? = null
+        init {
+            productTitle = itemView.findViewById(R.id.tv_title_of_product)
+            productPrice = itemView.findViewById(R.id.tv_price_product)
+            productImage = itemView.findViewById(R.id.iv_product_image)
+        }
         fun bind(product: Product){
-            itemView.tv_title_of_group.text = product.name
+            productTitle!!.text = product.title
+            productPrice!!.text = product.price
 
             Glide.with(itemView)
                     .load(product.imagePath)
-                    .into(itemView.iv_logo)
+                    .into(productImage!!)
         }
 
     }
