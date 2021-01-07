@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.shkiper.vkcupproducts.R
 import com.shkiper.vkcupproducts.models.City
 import com.shkiper.vkcupproducts.network.VKCitiesRequest
@@ -57,14 +58,19 @@ open class MainActivity : AppCompatActivity() {
 
 
      fun showFragment(fragment: Fragment){
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        supportFragmentManager.commit {
 
-        val tag = fragment.tag
+                setCustomAnimations(
+                        R.anim.slide_in,
+                        R.anim.fade_out,
+                        R.anim.fade_in,
+                        R.anim.slide_out
+                )
 
-        fragmentTransaction.replace(R.id.mainLayout, fragment, tag)
-        fragmentTransaction.addToBackStack(null)
+            replace(R.id.mainLayout, fragment)
+            addToBackStack(null)
 
-        fragmentTransaction.commit()
+        }
     }
 
 
@@ -93,11 +99,6 @@ open class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showBottomSheetDialog(){
-        bottomSheetDialog.show(supportFragmentManager, "OpenSheetDialog")
-    }
-
-
     fun hideBottomSheetDialog(){
         bottomSheetDialog.dismiss()
     }
@@ -106,7 +107,6 @@ open class MainActivity : AppCompatActivity() {
         toolbar.navigationIcon = null
     }
 
-    @SuppressLint("ResourceAsColor")
     fun setToolbarTitle(title: String) {
         tv_toolbar_title.text = title
     }
