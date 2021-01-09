@@ -23,6 +23,8 @@ class GroupFragment : Fragment() {
         const val GROUP_TITLE = "GROUP_TITLE"
     }
 
+    private lateinit var productsAdapter: ProductsAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_group, container, false)
@@ -49,6 +51,9 @@ class GroupFragment : Fragment() {
             }
         })
 
+    }
+
+    private fun initViews(){
 
     }
 

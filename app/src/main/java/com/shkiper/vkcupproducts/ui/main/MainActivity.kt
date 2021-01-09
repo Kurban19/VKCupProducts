@@ -59,17 +59,14 @@ open class MainActivity : AppCompatActivity() {
 
      fun showFragment(fragment: Fragment){
         supportFragmentManager.commit {
-
                 setCustomAnimations(
                         R.anim.slide_in,
                         R.anim.fade_out,
                         R.anim.fade_in,
                         R.anim.slide_out
                 )
-
             replace(R.id.mainLayout, fragment)
             addToBackStack(null)
-
         }
     }
 

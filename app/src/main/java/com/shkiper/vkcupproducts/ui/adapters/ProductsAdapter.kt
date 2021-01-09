@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shkiper.vkcupproducts.R
 import com.shkiper.vkcupproducts.models.Product
-import kotlinx.android.synthetic.main.rv_group_item.view.*
 
 
-class ProductsAdapter(private val products: List<Product>) : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
+class ProductsAdapter(private val products: List<Product>, private val listener: (Product) -> Unit) : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val view: View = LayoutInflater.from(viewGroup.context).inflate(R.layout.rv_product_item, viewGroup, false)
@@ -21,7 +20,7 @@ class ProductsAdapter(private val products: List<Product>) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = products[position]
-        holder.bind(product)
+        holder.bind(product, listener)
     }
 
     override fun getItemCount(): Int {
@@ -30,22 +29,28 @@ class ProductsAdapter(private val products: List<Product>) : RecyclerView.Adapte
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var productTitle: TextView? = null
-        var productImage: ImageView? = null
-        var productPrice: TextView? = null
+        private var productTitle: TextView? = null
+        private var productImage: ImageView? = null
+        private var productPrice: TextView? = null
+
         init {
-            productTitle = itemView.findViewById(R.id.tv_title_of_product)
-            productPrice = itemView.findViewById(R.id.tv_price_product)
-            productImage = itemView.findViewById(R.id.iv_product_image)
+            productTitle = itemView.findViewById(R.id.tv_title_of_product_item)
+            productPrice = itemView.findViewById(R.id.tv_price_product_item)
+            productImage = itemView.findViewById(R.id.iv_product_image_item)
         }
-        fun bind(product: Product){
+        fun bind(product: Product, listener: (Product) -> Unit){
             productTitle!!.text = product.title
             productPrice!!.text = product.price
 
             Glide.with(itemView)
                     .load(product.imagePath)
                     .into(productImage!!)
+
+
+            itemView.setOnClickListener{listener.invoke(product)}
         }
+
+
 
     }
 
