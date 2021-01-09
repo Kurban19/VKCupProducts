@@ -5,23 +5,46 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.solver.PriorityGoalRow
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shkiper.vkcupproducts.R
+import com.shkiper.vkcupproducts.models.Group
 import com.shkiper.vkcupproducts.models.Product
 
 
-class ProductsAdapter(private val products: List<Product>, private val listener: (Product) -> Unit) : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
+class ProductsAdapter(private val listener: (Product) -> Unit) : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
+
+    private var products: List<Product> = listOf()
+
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val view: View = LayoutInflater.from(viewGroup.context).inflate(R.layout.rv_product_item, viewGroup, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val product = products[position]
-        holder.bind(product, listener)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(products[position], listener)
+
+
+    fun updateData(data: List<Product>) {
+
+        val diffCallback = object : DiffUtil.Callback() {
+            override fun areItemsTheSame(oldPos: Int, newPos: Int): Boolean =
+                    products[oldPos].id == data[newPos].id
+
+            override fun getOldListSize(): Int = products.size
+
+            override fun getNewListSize(): Int = data.size
+
+            override fun areContentsTheSame(oldPos: Int, newPos: Int): Boolean =
+                    products[oldPos].hashCode() == data[newPos].hashCode()
+        }
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        products = data
+        diffResult.dispatchUpdatesTo(this)
     }
+
 
     override fun getItemCount(): Int {
         return products.size
@@ -49,10 +72,5 @@ class ProductsAdapter(private val products: List<Product>, private val listener:
 
             itemView.setOnClickListener{listener.invoke(product)}
         }
-
-
-
     }
-
-
 }

@@ -5,12 +5,12 @@ import android.os.Parcelable
 import org.json.JSONObject
 
 data class Product(
-    private val id: Int,
-    val title: String,
-    val imagePath: String,
-    val price: String,
+        val id: Int,
+        val title: String,
+        val imagePath: String,
+        val price: String,
 //    private val isChosen: Boolean = false,
-    private val description: String
+        val description: String
 ) : Parcelable {
 
 

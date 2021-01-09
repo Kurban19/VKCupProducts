@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.shkiper.vkcupproducts.R
+import com.shkiper.vkcupproducts.extensions.truncate
 import com.shkiper.vkcupproducts.models.Product
 import com.shkiper.vkcupproducts.network.VKProductsRequest
 import com.shkiper.vkcupproducts.ui.adapters.ProductsAdapter
 import com.shkiper.vkcupproducts.ui.main.MainActivity
+import com.shkiper.vkcupproducts.ui.product.ProductFragment
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.VKApiCallback
 import kotlinx.android.synthetic.main.fragment_group.*
@@ -34,6 +36,19 @@ class GroupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 //        initViews()
+
+    }
+
+    private fun initViews(){
+
+        productsAdapter = ProductsAdapter {
+            val productFragment = ProductFragment()
+            val bundle = Bundle()
+            bundle.putParcelable(ProductFragment.PRODUCT, it)
+            productFragment.arguments = bundle
+            (activity as MainActivity).showFragment(productFragment)
+        }
+
         VK.execute(VKProductsRequest(requireArguments().getString(GROUP_ID, "-1")), object: VKApiCallback<List<Product>>{
             override fun success(result: List<Product>) {
                 initProductsRecyclerView(result)
@@ -50,25 +65,21 @@ class GroupFragment : Fragment() {
 
             }
         })
-
-    }
-
-    private fun initViews(){
-
     }
 
 
     private fun initProductsRecyclerView(products : List<Product>) {
         with(rv_list_of_products){
             layoutManager = GridLayoutManager(requireContext(),2);
-            adapter = ProductsAdapter(products)
+            productsAdapter.updateData(products)
+            adapter = productsAdapter
         }
 
     }
 
     override fun onResume() {
         super.onResume()
-        (activity as MainActivity?)!!.setToolbarTitle("Товары сообщества ${arguments?.getString(GROUP_TITLE, "")}")
+        (activity as MainActivity?)!!.setToolbarTitle("Товары сообщества ${arguments?.getString(GROUP_TITLE, "")}".truncate(24))
         (activity as MainActivity?)!!.enableNavigationIcon()
         (activity as MainActivity?)!!.disableDropDownIcon()
     }
