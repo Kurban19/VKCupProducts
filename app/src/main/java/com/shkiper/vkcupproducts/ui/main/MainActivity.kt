@@ -26,7 +26,6 @@ open class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         initBottomSheetDialog()
-//        showBottomSheetDialog()
         showFragment(GroupsFragment())
         enableNavigationIcon()
         initViews()
@@ -98,6 +97,10 @@ open class MainActivity : AppCompatActivity() {
 
     fun hideBottomSheetDialog(){
         bottomSheetDialog.dismiss()
+    }
+
+    fun showBottomSheetDialog(){
+        bottomSheetDialog.show(supportFragmentManager, "OpenSheetDialog")
     }
 
     fun disableNavigationIcon() {

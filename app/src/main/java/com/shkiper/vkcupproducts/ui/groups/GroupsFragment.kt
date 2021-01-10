@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shkiper.vkcupproducts.R
-import com.shkiper.vkcupproducts.repositories.GroupsRepository
 import com.shkiper.vkcupproducts.ui.adapters.GroupAdapter
 import com.shkiper.vkcupproducts.ui.group.GroupFragment
 import com.shkiper.vkcupproducts.ui.main.MainActivity
