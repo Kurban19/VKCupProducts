@@ -18,6 +18,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 open class MainActivity : AppCompatActivity() {
 
+    companion object{
+        const val groupsFragmentTAG = "groupsFragmentTAG"
+
+    }
+
 
     private lateinit var bottomSheetDialog: CitiesSheetDialog
 
@@ -25,38 +30,11 @@ open class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        initBottomSheetDialog()
-        showFragment(GroupsFragment())
+        showFragment(GroupsFragment(), groupsFragmentTAG)
         enableNavigationIcon()
-        initViews()
     }
 
-    private fun initBottomSheetDialog(){
-        loadCities()
-    }
-
-
-    private fun loadCities(){
-        VK.execute(VKCitiesRequest(), object: VKApiCallback<List<City>> {
-            override fun success(result: List<City>) {
-                bottomSheetDialog = CitiesSheetDialog(result)
-            }
-            override fun fail(error: Exception) {
-                throw KotlinNullPointerException()
-            }
-        })
-    }
-
-
-    private fun initViews(){
-        ic_dropdown.setOnClickListener {
-            bottomSheetDialog.show(supportFragmentManager, "OpenSheetDialog")
-        }
-
-    }
-
-
-     fun showFragment(fragment: Fragment){
+     fun showFragment(fragment: Fragment, tag: String = ""){
         supportFragmentManager.commit {
                 setCustomAnimations(
                         R.anim.slide_in,
@@ -64,7 +42,7 @@ open class MainActivity : AppCompatActivity() {
                         R.anim.fade_in,
                         R.anim.slide_out
                 )
-            replace(R.id.mainLayout, fragment)
+            replace(R.id.mainLayout, fragment, tag)
             addToBackStack(null)
         }
     }
@@ -95,13 +73,6 @@ open class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun hideBottomSheetDialog(){
-        bottomSheetDialog.dismiss()
-    }
-
-    fun showBottomSheetDialog(){
-        bottomSheetDialog.show(supportFragmentManager, "OpenSheetDialog")
-    }
 
     fun disableNavigationIcon() {
         toolbar.navigationIcon = null

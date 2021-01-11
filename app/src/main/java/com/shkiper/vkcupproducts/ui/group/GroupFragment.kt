@@ -8,13 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.shkiper.vkcupproducts.R
 import com.shkiper.vkcupproducts.extensions.truncate
+import com.shkiper.vkcupproducts.models.City
 import com.shkiper.vkcupproducts.models.Product
+import com.shkiper.vkcupproducts.network.VKCitiesRequest
 import com.shkiper.vkcupproducts.network.VKProductsRequest
 import com.shkiper.vkcupproducts.ui.adapters.ProductsAdapter
+import com.shkiper.vkcupproducts.ui.dialogs.CitiesSheetDialog
 import com.shkiper.vkcupproducts.ui.main.MainActivity
 import com.shkiper.vkcupproducts.ui.product.ProductFragment
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.VKApiCallback
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_group.*
 
 
@@ -76,6 +80,8 @@ class GroupFragment : Fragment() {
         }
 
     }
+
+
 
     override fun onResume() {
         super.onResume()

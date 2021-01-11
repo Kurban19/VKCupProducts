@@ -1,7 +1,6 @@
 
 package com.shkiper.vkcupproducts.ui.adapters
 
-import android.app.PendingIntent.getActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.shkiper.vkcupproducts.R
 import com.shkiper.vkcupproducts.models.City
 import com.shkiper.vkcupproducts.repositories.GroupsRepository
+import com.shkiper.vkcupproducts.ui.groups.GroupsFragment
 import com.shkiper.vkcupproducts.ui.main.MainActivity
 
 
@@ -40,8 +40,9 @@ class CitiesAdapter(private val activity: MainActivity, private var cities : Mut
            cityTitle!!.text = city.title
 
             itemView.setOnClickListener {
+                val fragment = activity.supportFragmentManager.findFragmentByTag((MainActivity.groupsFragmentTAG)) as GroupsFragment
                 GroupsRepository.fetchGroups(city.id)
-                activity.hideBottomSheetDialog()
+                fragment.hideBottomSheetDialog()
                 activity.setToolbarTitle("Магазины в ${city.title}")
             }
         }
