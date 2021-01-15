@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.shkiper.vkcupproducts.R
 import com.shkiper.vkcupproducts.models.City
 import com.shkiper.vkcupproducts.network.VKCitiesRequest
+import com.shkiper.vkcupproducts.repositories.GroupsRepository
 import com.shkiper.vkcupproducts.ui.adapters.GroupAdapter
 import com.shkiper.vkcupproducts.ui.dialogs.CitiesSheetDialog
 import com.shkiper.vkcupproducts.ui.group.GroupFragment
@@ -58,15 +59,15 @@ class GroupsFragment : Fragment() {
         VK.execute(VKCitiesRequest(), object: VKApiCallback<List<City>> {
             override fun success(result: List<City>) {
                 bottomSheetDialog = CitiesSheetDialog(result)
-//                bottomSheetDialog.show(requireActivity().supportFragmentManager, "OpenSheetDialog")
+                if(GroupsRepository.loadGroups().value == null){
+                    bottomSheetDialog.show(requireActivity().supportFragmentManager, "OpenSheetDialog")
+                }
             }
             override fun fail(error: Exception) {
                 throw KotlinNullPointerException()
             }
         })
     }
-
-
 
 
 

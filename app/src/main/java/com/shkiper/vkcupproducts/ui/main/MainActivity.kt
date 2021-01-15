@@ -1,6 +1,5 @@
 package com.shkiper.vkcupproducts.ui.main
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,12 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.shkiper.vkcupproducts.R
-import com.shkiper.vkcupproducts.models.City
-import com.shkiper.vkcupproducts.network.VKCitiesRequest
-import com.shkiper.vkcupproducts.ui.dialogs.CitiesSheetDialog
 import com.shkiper.vkcupproducts.ui.groups.GroupsFragment
-import com.vk.api.sdk.VK
-import com.vk.api.sdk.VKApiCallback
 import kotlinx.android.synthetic.main.activity_main.*
 
 open class MainActivity : AppCompatActivity() {
@@ -22,9 +16,6 @@ open class MainActivity : AppCompatActivity() {
         const val groupsFragmentTAG = "groupsFragmentTAG"
 
     }
-
-
-    private lateinit var bottomSheetDialog: CitiesSheetDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

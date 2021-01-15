@@ -34,7 +34,6 @@ class CitiesAdapter(private val activity: MainActivity, private var cities : Mut
         init {
             cityTitle = itemView!!.findViewById(R.id.cityTextView)
             checkedIV = itemView.findViewById(R.id.checkedImageView)
-//            checkedIV!!.visibility = View.VISIBLE
         }
         fun bind(city: City){
            cityTitle!!.text = city.title
